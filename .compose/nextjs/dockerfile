@@ -1,0 +1,6 @@
+FROM node:14-alpine
+
+WORKDIR /home/service/nextjs
+
+ADD ./.compose/nextjs/start.sh /start.sh
+RUN chmod +x /*.sh
