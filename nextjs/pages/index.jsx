@@ -1,18 +1,20 @@
-import { DndContext } from '@dnd-kit/core';
-import Draggable from './Draggable';
-import Droppable from './Droppable';
+import React from 'react';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
+import { rectSortingStrategy } from '@dnd-kit/sortable';
+import { GridContainer } from '../components';
+import { Sortable } from './Sortable';
 
-const Home = () => {
-  return (
-    <DndContext>
-      <Draggable />
-      <Droppable>
-        <div style={{ width: 500, height: 500 }}>
+const props = {
+  adjustScale: true,
+  Container: (props) => <GridContainer {...props} columns={5} />,
+  strategy: rectSortingStrategy,
+  wrapperStyle: () => ({
+    width: 140,
+    height: 140,
+  }),
+  modifiers: [restrictToWindowEdges],
+};
 
-        </div>
-      </Droppable>
-    </DndContext>
-  )
-}
+const BasicSetup = () => <Sortable {...props} />;
 
-export default Home;
+export default BasicSetup;
